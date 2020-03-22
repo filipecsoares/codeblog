@@ -47,6 +47,7 @@ public class PostController {
 	@RequestMapping(value = "/newpost", method = RequestMethod.POST)
 	public String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
+			attributes.addFlashAttribute("message", "Check required fields.");
 			return "redirect:/newpost";
 		}
 		post.setCreatedAt(LocalDate.now());
